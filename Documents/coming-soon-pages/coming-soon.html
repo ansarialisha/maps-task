@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="coming-soon.css">
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="flex-container" x-data="comingSoonWebComponent()">
+            <div class="display-flex position-relative justify-center">
+                <div class="item-1 position-absolute display-flex justify-center align-center">
+                    <img src="./icons/link.png" class="img">  Designknot
+                </div>
+            </div>
+            <div class="display-flex justify-center">
+                <img src="./icons/Hand.png" class="hand-img">
+            </div>
+            <div class="display-flex justify-center column align-center">
+                <h3>WE'RE STILL</h3>
+                <h1>Cooking Our Website.</h1>
+                <h2>We are going to launch our website very soon.</h2>
+                <h2>Stay Tune.</h2>
+            </div>
+            <div class="display-flex justify-center">
+                <button class="button display-flex justify-center align-center position-relative" @click="notifyMe()">
+                    <img src="./icons/email.png" class="email-icon position-absolute"> Notify Me > 
+                </button>
+            </div>
+            <div class="display-flex">
+                <img src="./icons/asset.png" class="height-width position-absolute left">
+                <img src="./icons/asset-1.png" class="height-width position-absolute right">
+            </div>
+            <img src="./icons/asset-2.png" class="height-width-1 position-absolute bottom">
+        </div>
+        <script>
+            function comingSoonWebComponent() {
+                return {
+                    notifyMe: function(){
+                        alert("You will be notified when our website is launched.");
+
+                    }
+                }
+            }
+
+        </script>
+    </body>
+</html>

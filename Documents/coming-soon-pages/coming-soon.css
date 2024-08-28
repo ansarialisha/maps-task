@@ -1,0 +1,116 @@
+body{
+    background: linear-gradient(to right, #A9A7CC, #ABB1D3, #AEC1DC, #B0D4E7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+.display-flex{
+    display: flex;
+}
+.justify-center{
+    justify-content: center;
+}
+.align-center{
+    align-items: center;
+}
+.column{
+    flex-direction: column;
+    font-family: sans-serif;
+}
+h3{
+    font-weight: 500;
+}
+h1{
+    margin: 10 0 40 0;
+    font-size: 65px;
+    color: #0E47DF;
+}
+h2{
+    color: #767784;
+    font-weight: 300;
+    margin-top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.button{
+    margin-top: 30px;
+    height: 60px;
+    width: 250px;
+    color: white;
+    background-color: #181A38;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 20px;
+    padding-left: 30px;
+}
+.left{
+    left: 30%;
+}
+.right{
+    right: 30%;
+}
+.bottom{
+    right: 14%;
+    bottom: -7%;
+    rotate: 10deg;
+}
+.email-icon{
+    height: 45px;
+    width: 45px;
+    left: 10;
+}
+.height-width{
+    height: 80px;
+    width: 80px;
+    object-fit: contain;
+}
+.height-width-1{
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+}
+.flex-container{
+    min-height: 100vh;
+    width: 70%;
+    border: solid white 10px;
+    border-radius: 50px;
+    background: linear-gradient(130deg,#E4D9F1, #EAD3EC, #EAD3EC, #DEEAFD,#F4F7FF, #F9F9FF, #F9F9FF,
+    #F9F9FF,#F9F9FF,#F9F9FF,#F9F9FF,#F9F9FF,#F9F9FF,#F9F9FF);
+   
+}
+.position-relative{
+    position: relative;
+}
+.position-absolute{
+    position: absolute;
+}
+.item-1{
+    height: 55px;
+    width: 250px;
+    background-color: #FFFFFF;
+    top: 0;
+    border-radius: 0 0 40px 40px;
+    font-size: 20px;
+    font-family: cursive;
+    font-weight: 500;
+}
+.img{
+    margin-right: 10px;
+    height: 32px;
+    width: 32px;
+}
+.hand-img{
+    height: 70px;
+    width: 70px;
+    object-fit: contain;
+    margin-top: 100px;
+}
+@media screen and (max-width: 1024px) {
+    h1{
+        font-size: xx-large;
+    }
+    
+}
