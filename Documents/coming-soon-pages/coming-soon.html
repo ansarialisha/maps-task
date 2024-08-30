@@ -6,7 +6,8 @@
     </head>
     <body>
         <div class="flex-container" x-data="comingSoonWebComponent()">
-            <div class="display-flex position-relative justify-center">
+            <div class="display-flex justify-center position-relative">
+                <div class="item-1 position-absolute"></div>
                 <div class="item-1 position-absolute display-flex justify-center align-center">
                     <img src="./icons/link.png" class="img">  Designknot
                 </div>
@@ -21,10 +22,17 @@
                 <h2>Stay Tune.</h2>
             </div>
             <div class="display-flex justify-center">
-                <button class="button display-flex justify-center align-center position-relative" @click="notifyMe()">
+                <button class="button display-flex justify-center align-center position-relative" @click="showForm = true">
                     <img src="./icons/email.png" class="email-icon position-absolute"> Notify Me > 
                 </button>
             </div>
+
+            <div x-show="showForm" class="modalForm">
+                <iframe width="540" height="305" src="https://5704779c.sibforms.com/serve/MUIFAFr2hBp0g5-2_1uyEZMoO70bv5SXY4d_pcmHHaqqWFFugINrwEFNK_DyGmhuxKUBuTXgI7imU_OEm4INtg0lwBdLErnwCKYdD_3-vRmRuxIXR3ZGT6QeqSDez5-kD6EuZfM17sCz9YbTemQ8NOALqK6uoayt4moXTT2B6F8mEAcmme4Cshmlv1wL2f7ORXc__2QTXau6cX6V" 
+                frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin-left: auto;margin-right: auto;max-width: 100%;"></iframe>
+                <img src="../image-task/images/close.png" class="position-absolute close-form" @click="showForm = false">
+            </div>
+
             <div class="display-flex">
                 <img src="./icons/asset.png" class="height-width position-absolute left">
                 <img src="./icons/asset-1.png" class="height-width position-absolute right">
@@ -34,13 +42,9 @@
         <script>
             function comingSoonWebComponent() {
                 return {
-                    notifyMe: function(){
-                        alert("You will be notified when our website is launched.");
-
-                    }
+                    showForm: false,
                 }
-            }
-
-        </script>
+            }    
+        </script>   
     </body>
 </html>
