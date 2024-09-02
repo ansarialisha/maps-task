@@ -5,12 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div class="flex-container" x-data="comingSoonWebComponent()">
-            <div class="display-flex justify-center position-relative">
-                <div class="item-1 position-absolute"></div>
-                <div class="item-1 position-absolute display-flex justify-center align-center">
+        <div class="flex-container column" x-data="comingSoonWebComponent()">
+            <div class="display-flex justify-center position-relative parentd-item">
+                <div class="display-flex justify-center position-relative item-0"></div>
+                <div class="item-1 display-flex justify-center align-center">
                     <img src="./icons/link.png" class="img">  Designknot
                 </div>
+                <div class="display-flex justify-center position-relative item-2"></div>
             </div>
             <div class="display-flex justify-center">
                 <img src="./icons/Hand.png" class="hand-img">
