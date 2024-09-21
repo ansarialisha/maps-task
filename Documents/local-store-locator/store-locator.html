@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <link rel="stylesheet" href="store-locator.css">
+    </head>
+    <body>
+        <div x-data="storeLocatorComponent()" class="container">
+            <div class="div-p">
+                <input type="number" x-model="inputValue" @input="filterZipCodes" placeholder="Enter Zip Code"/>
+                <div x-show="zipCodeList.length" class="zip-code-list">
+                    <template x-for="zip in zipCodeList" :key="zip">
+                        <div class="zip-code-item" @click="selectZipCode(zip)">
+                            <span x-text="zip"></span>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="result" x-text="showResult"></div>
+        </div>
+        <script>
+            function storeLocatorComponent() {
+                return {
+                    inputValue: '',
+                    showResult: '',
+                    zipCodeList: [],
+                    predictions: [],
+                    baseUrl: 'test.php', 
+                    
+                    fetchURL: function() {
+                        const input = (this.inputValue);
+                        return `${this.baseUrl}?input=${input}&key=${this.apiKey}&country=us`;
+                    },
+
+                    filterZipCodes: async function() {
+                        if (!this.inputValue) {
+                            this.zipCodeList = [];
+                            this.showResult = '';
+                            return;
+                        }
+
+                        try {
+                            let response = await fetch(this.fetchURL());
+                            let data = await response.json();
+
+                            if (data && data.predictions) {
+                                this.predictions = data.predictions;
+                                this.zipCodeList = this.predictions.map(prediction => prediction.description);
+                            } else {
+                                this.showResult = 'Invalid data format.';
+                            }
+                        } catch (error) {
+                            this.showResult = 'Error fetching data: ' + error.message;
+                        }
+                    },
+
+                    selectZipCode: function(zipCode) {
+                        let matched = this.predictions.find(prediction =>
+                            prediction.description === zipCode
+                        );
+
+                        if (matched) {
+                            this.showResult = matched.description;
+                            this.inputValue = zipCode;
+                            this.zipCodeList = [];
+                        }
+                    },
+                }
+            }
+        </script>
+    </body>
+</html>
