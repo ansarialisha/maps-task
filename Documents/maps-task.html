@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Custom Store Locator</title>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCt0DCXuD4xix2zxotqjKEohje6AhES9rQ&callback=loadMap"></script>
+        <style>
+            html, body {
+                margin: 0;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            #map {
+                width: 100%;
+                height: 100vh;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                display: flex;
+                gap: 10px;
+                margin-top: 20px;
+            }
+            li {
+                cursor: pointer;
+                padding: 10px;
+                background-color: #1967d2;
+                color: white;
+                border-radius: 5px;
+            }
+            li:hover {
+                background-color: #1a73e8;
+            }
+        </style>
+    </head>
+    <body>
+        <div x-data="mapComponent()">
+            <div id="map"></div>
+            <ul id="location-list">
+                <li data-lat="19.1637645" data-lng="73.0202145">Kausa</li>
+                <li data-lat="19.2086591" data-lng="72.9690865">Viviana Mall</li>
+                <li data-lat="19.1654798" data-lng="73.0724935">Xperia Mall</li>
+                <li data-lat="19.1550686" data-lng="73.0779439">Nilje Station</li>
+                <li data-lat="19.1582176" data-lng="73.0645383">SK Plaza</li>
+                <li data-lat="19.1557109" data-lng="73.0595916">Khidkali Mandir</li>
+                <li data-lat="19.1422131" data-lng="73.0407644">Bharat Eco Vista</li>
+            </ul>
+        </div>
+
+        <script>
+            function mapComponent() {
+                return {
+                    map: null,
+                    initMap() {
+                        let defaultCenter = {lat: 38.0, lng: -100.0};
+                        this.map = new google.maps.Map(document.getElementById("map"), {
+                            center: defaultCenter,
+                            zoom: 4,
+                            mapTypeControl: true,
+                            streetViewControl: true,
+                            fullscreenControl: true,
+                            zoomControl: true,
+                        });
+
+                        let bounds = new google.maps.LatLngBounds();
+                        document.querySelectorAll('#location-list li').forEach(item => {
+                            let lat = parseFloat(item.getAttribute('data-lat'));
+                            let lng = parseFloat(item.getAttribute('data-lng'));
+                            let title = item.textContent;
+
+                            if (lat && lng) {
+                                let marker = new google.maps.Marker({
+                                    position: { lat: lat, lng: lng },
+                                    map: this.map,
+                                    title: title,
+                                });
+
+                                bounds.extend(marker.position);
+
+                                item.addEventListener('click', () => {
+                                    this.moveToLocation(lat, lng);
+                                });
+                            }
+                        });
+                        this.map.fitBounds(bounds);
+                    },
+                    moveToLocation(lat, lng) {
+                        let location = { lat: lat, lng: lng };
+                        this.map.panTo(location);
+
+                        setTimeout(() => {
+                            this.map.setZoom(15);
+                        }, 1000);
+
+                        new google.maps.Marker({
+                            map: this.map,
+                            position: location,
+                        });
+                    },
+                }
+            }
+
+            function loadMap() {
+                const component = mapComponent();
+                component.initMap();
+                return component;
+            }
+            window.onload = loadMap;
+        </script>
+    </body>
+</html>
